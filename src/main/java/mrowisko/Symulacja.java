@@ -1,15 +1,12 @@
 package mrowisko;
 
-import mrowisko.model.Krolowa;
-import mrowisko.model.Mrowisko;
-import mrowisko.model.Robotnica;
-import mrowisko.model.Zolnierz;
-import mrowisko.model.Zagrozenie;
-
+import mrowisko.model.*; //poprawa importow zeby wszystkie na raz brał
+import java.util.Scanner; // żeby wpisywac do konsoli poczatkowe wartosci
 import java.util.Random;
 
 
-public class Symulacja {
+public class Symulacja
+{
     private int czasTrwania;
     private boolean czyZagrozenia;
     private Mrowisko mrowisko;
@@ -32,22 +29,18 @@ public class Symulacja {
 
     public void uruchom()
     {
-        System.out.printf("Start symulacji: czas= " + czasTrwania + ", zasoby= " + mrowisko.getZasoby()+ ", zagrozenia= " + czyZagrozenia);
+        System.out.printf("Start symulacji: czas= " + czasTrwania + ", zasoby= " + mrowisko.getZasoby() + ", zagrozenia= " + czyZagrozenia);
 
         for (int krok = 1; krok <= czasTrwania; krok++)
         {
             System.out.println();
-            System.out.printf("=== Krok "+ krok +  " ===");
+            System.out.printf("=== Krok " + krok + " ===");
             System.out.println();
 
-            if (czyZagrozenia && random.nextBoolean())
-            {
+            if (czyZagrozenia && random.nextBoolean()) {
                 Zagrozenie z = new Zagrozenie(".....", 10 + random.nextInt(20)); //tu mozna zmienic "sile" zagrozenia
                 z.atakuj(mrowisko);
-            }
-
-            else
-            {
+            } else {
                 System.out.println("Brak zagrozen w tym kroku.");
             }
             mrowisko.zarzadzaj();
@@ -56,7 +49,14 @@ public class Symulacja {
             //takie podsumowanie
             System.out.println("Liczba mrowek: " + mrowisko.getMrowki().size());
             System.out.println("Zasoby: " + mrowisko.getZasoby());
+
+            try {
+                Thread.sleep(2000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
+
         zakonczSymulacje();
     }
 
@@ -73,7 +73,20 @@ public class Symulacja {
     //Tu musimy znalesc "złoty" środek żeby to wszystko fajnie grało, znaczy żeby te mrówki miały zrównoważone siły z zagrozeniem ale i tak narazie zolnierz nie moze bic zagrozenia :((
     public static void main(String[] args)
     {
-        Symulacja sym = new Symulacja(20, 100, true);
+        Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Podaj liczbe rund: ");
+                int czas = scanner.nextInt();
+
+            System.out.print("Podaj poczatkowe zasoby: ");
+                int zasobyStart = scanner.nextInt();
+
+            System.out.print("Czy uwzglednia czyZagrozenia (true/false): ");
+            boolean czyZagrozenia = scanner.nextBoolean();
+
+        scanner.close();
+
+        Symulacja sym = new Symulacja(czas, zasobyStart, czyZagrozenia);
         sym.uruchom();
     }
 }
