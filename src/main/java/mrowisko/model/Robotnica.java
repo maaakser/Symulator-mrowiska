@@ -10,7 +10,7 @@ public class Robotnica extends Mrowka
     }
 
 
-    public void ruch()
+    public void ruch(Mrowisko mrowisko) //referencja do mrowiska
     {
 
         if (!isCzyZyje())
@@ -22,4 +22,6 @@ public class Robotnica extends Mrowka
         zmniejszEnergie(5);
         System.out.println("Robotnica #" + getId() + " ruch wykonany. Energia: " + getEnergia());
     }
+
+
 }

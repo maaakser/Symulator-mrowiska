@@ -17,14 +17,14 @@ public class Mrowisko
 
     public void zarzadzaj()
     {
-        List<Mrowka> snapshot = new ArrayList<>(mrowki);
-        for (Mrowka m : snapshot) // kopia listy bo inaczej wywalało błąd
+        List<Mrowka> snapshot = new ArrayList<>(mrowki);   //kopię listy bo inaczej wywalalo błąd
+        for (Mrowka m : snapshot)
         {
-            m.ruch();
-            if (!m.isCzyZyje())
+            m.ruch(this); //referencja do mrowiska aby krolowa mogla "edytowac" mrowisko
 
+            if (!m.isCzyZyje())
             {
-                mrowki.remove(m);
+                mrowki.remove(m);  // jeśli któraś mrówka padła, usuwamy
                 System.out.println("Mrowka #" + m.getId() + " umarla.");
             }
         }

@@ -20,7 +20,7 @@ public abstract class Mrowka
     }
 
 
-    public abstract void ruch();
+    public abstract void ruch(Mrowisko mrowisko); //zmiana polimorfizmu aby krolowa mogla "edytowac" mrowisko i jego zasoby
 
 
     public void smierc()

@@ -2,7 +2,7 @@ package mrowisko;
 
 import mrowisko.model.*; //poprawa importow zeby wszystkie na raz brał
 import java.util.Scanner; // żeby wpisywac do konsoli poczatkowe wartosci
-import java.util.Random;
+import java.util.Random; //sila zagorozenia
 
 
 public class Symulacja
@@ -37,10 +37,13 @@ public class Symulacja
             System.out.printf("=== Krok " + krok + " ===");
             System.out.println();
 
-            if (czyZagrozenia && random.nextBoolean()) {
+            if (czyZagrozenia && random.nextBoolean())
+            {
                 Zagrozenie z = new Zagrozenie(".....", 10 + random.nextInt(20)); //tu mozna zmienic "sile" zagrozenia
                 z.atakuj(mrowisko);
-            } else {
+            }
+            else
+            {
                 System.out.println("Brak zagrozen w tym kroku.");
             }
             mrowisko.zarzadzaj();
@@ -50,9 +53,12 @@ public class Symulacja
             System.out.println("Liczba mrowek: " + mrowisko.getMrowki().size());
             System.out.println("Zasoby: " + mrowisko.getZasoby());
 
-            try {
-                Thread.sleep(2000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
-            } catch (InterruptedException e) {
+            try
+            {
+                Thread.sleep(4000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+            }
+            catch (InterruptedException e)
+            {
                 Thread.currentThread().interrupt();
             }
         }

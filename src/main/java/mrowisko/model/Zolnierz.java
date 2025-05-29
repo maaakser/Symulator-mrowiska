@@ -12,7 +12,7 @@ public class Zolnierz extends Mrowka
     }
 
 
-    public void ruch()
+    public void ruch(Mrowisko mrowisko) //referencja do mrowiska
     {
         if (!isCzyZyje()) return;
 
