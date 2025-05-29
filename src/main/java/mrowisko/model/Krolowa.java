@@ -17,7 +17,7 @@ public class Krolowa extends Mrowka
 
         int kosztZlozeniaJaja=100; //Tu mozemy edytowac ile za złożenie jaja
 
-        if (mrowisko.getZasoby() >= kosztZlozeniaJaja)
+        if (mrowisko.getZasoby() >= kosztZlozeniaJaja) //pozniej trzeba dodac "szanse" (mysle ze 30%?) aby z tych mrowek urodził sie zolnierz
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
             mrowisko.dodajMrowke(new Robotnica());
