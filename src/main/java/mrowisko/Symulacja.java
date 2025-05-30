@@ -22,8 +22,8 @@ public class Symulacja
         mrowisko.dodajMrowke(new Krolowa());
         mrowisko.dodajMrowke(new Robotnica());
         mrowisko.dodajMrowke(new Robotnica());
-        mrowisko.dodajMrowke(new Zolnierz(2));
-        mrowisko.dodajMrowke(new Zolnierz(1));
+        mrowisko.dodajMrowke(new Zolnierz(15));
+        mrowisko.dodajMrowke(new Zolnierz(15));
     }
 
 
@@ -39,7 +39,7 @@ public class Symulacja
 
             if (czyZagrozenia && random.nextBoolean())
             {
-                Zagrozenie z = new Zagrozenie(".....", 100 + random.nextInt(20)); //tu mozna zmienic "sile" zagrozenia
+                Zagrozenie z = new Zagrozenie(".....", 10 + random.nextInt(10)); //tu mozna zmienic "sile" zagrozenia
                 z.atakuj(mrowisko);
             }
             else

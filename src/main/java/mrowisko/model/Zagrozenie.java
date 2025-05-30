@@ -25,9 +25,18 @@ public class Zagrozenie
             Mrowka m = lista.get(i);
             if (m instanceof Zolnierz && m.isCzyZyje()) //sprawdzanie czy jest zolnierzem i czy zyje, bo zagrozenie priorytetuje aby atakowac zolnierza
             {
-                Zolnierz z = (Zolnierz) m; //rzutowanie aby przejac metody
-                z.zmniejszEnergie(sila);
-                System.out.println("zolnierz #" + z.getId() + " stracil " + sila + " energii. Pozostalo: " + z.getEnergia());
+                Zolnierz z = (Zolnierz) m;//rzutowanie aby przejac metody
+
+                if (sila> z.getSila()) //jezeli zolnierz ma mniejsza sile to zagroznie atakuje za tyle hp co ma sile
+              {
+                  z.zmniejszEnergie(sila);
+                  System.out.println("zolnierz #" + z.getId() + " stracil " + sila + " energii. Pozostalo: " + z.getEnergia());
+              }
+
+              else //zagrozenie za slabe
+              {
+                  System.out.println("Zagrozenie ma za mala sile zeby pokonac zolnierza #" + z.getId());
+              }
                 return;
             }
         }

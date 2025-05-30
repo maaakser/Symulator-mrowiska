@@ -20,4 +20,9 @@ public class Zolnierz extends Mrowka
         zmniejszEnergie(8);
         System.out.println("zolnierz #" + getId() + " patroluje. Energia: " + getEnergia() + " Jego aktualna sila to: "+ sila);
     }
+
+    public int getSila()
+    {
+        return sila;
+    }
 }
