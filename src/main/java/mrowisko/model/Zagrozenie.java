@@ -35,6 +35,7 @@ public class Zagrozenie
 
               else //zagrozenie za slabe
               {
+                  z.zmniejszEnergie(sila-10);
                   System.out.println("Zagrozenie ma za mala sile zeby pokonac zolnierza #" + z.getId());
               }
                 return;
