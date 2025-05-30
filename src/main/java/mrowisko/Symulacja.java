@@ -39,7 +39,7 @@ public class Symulacja
 
             if (czyZagrozenia && random.nextBoolean())
             {
-                Zagrozenie z = new Zagrozenie(".....", 10 + random.nextInt(20)); //tu mozna zmienic "sile" zagrozenia
+                Zagrozenie z = new Zagrozenie(".....", 100 + random.nextInt(20)); //tu mozna zmienic "sile" zagrozenia
                 z.atakuj(mrowisko);
             }
             else
@@ -48,6 +48,12 @@ public class Symulacja
             }
             mrowisko.zarzadzaj();
 
+
+            if (mrowisko.getMrowki().isEmpty())
+            {
+                System.out.println("Wszystkie mrowki umarly – symulacja zakonczona w kroku " + krok); //Dodanie zakonczenia symulacji po smieric wszystkich mrówek
+                break;
+            }
 
             //takie podsumowanie
             System.out.println("Liczba mrowek: " + mrowisko.getMrowki().size());
