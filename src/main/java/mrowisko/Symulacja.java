@@ -51,7 +51,7 @@ public class Symulacja
 
             if (mrowisko.getMrowki().isEmpty())
             {
-                System.out.println("Wszystkie mrowki umarly – symulacja zakonczona w kroku " + krok); //Dodanie zakonczenia symulacji po smieric wszystkich mrówek
+                System.out.println("Wszystkie mrowki umarly - symulacja zakonczona w kroku " + krok); //Dodanie zakonczenia symulacji po smieric wszystkich mrówek
                 break;
             }
 
@@ -61,7 +61,7 @@ public class Symulacja
 
             try
             {
-                Thread.sleep(4000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(100);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
             }
             catch (InterruptedException e)
             {
