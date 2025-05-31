@@ -55,13 +55,31 @@ public class Symulacja
                 break;
             }
 
+            boolean czyZyjeKrolowa = false;
+            for(Mrowka m : mrowisko.getMrowki())
+            {
+                if (m instanceof Krolowa && m.isCzyZyje()) // sprawdzenie czy mrowka jest krolowa i czy zyje
+                {
+                    czyZyjeKrolowa = true;
+                    break;
+                }
+            }
+
+            if (!czyZyjeKrolowa)
+            {
+                System.out.println("Krolowa nie zyje – koniec symulacji w kroku " + krok);
+                break;
+            }
+
+
+
             //takie podsumowanie
             System.out.println("Liczba mrowek: " + mrowisko.getMrowki().size());
             System.out.println("Zasoby: " + mrowisko.getZasoby());
 
             try
             {
-                Thread.sleep(4000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(100);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
             }
             catch (InterruptedException e)
             {

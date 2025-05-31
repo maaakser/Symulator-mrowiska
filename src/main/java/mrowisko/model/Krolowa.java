@@ -1,8 +1,11 @@
 package mrowisko.model;
+import java.util.Random;
 
 
 public class Krolowa extends Mrowka
 {
+    private static Random szanse = new Random(); //losowa liczba do wyklucia zolnierz/robotnica
+
     public Krolowa()
     {
         super(200);  // energia startowa, tu trzeba dodac że złożenia jaja = mniejsza energia. Może nowa klasa "jaja"?
@@ -19,10 +22,24 @@ public class Krolowa extends Mrowka
         if (mrowisko.getZasoby() >= kosztZlozeniaJaja) //pozniej trzeba dodac "szanse" (mysle ze 30%?) aby z tych mrowek urodził sie zolnierz
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
-            mrowisko.dodajMrowke(new Robotnica());
-            zmniejszEnergie(20);
-            System.out.println("Krolowa #" + getId() + " zlozyla jajo. Jej aktualna energia to  " + getEnergia()+ " Do zlozenia jaj zuzyto "+kosztZlozeniaJaja+" zasobow mrowiska. Pozostalo: "+mrowisko.getZasoby());
-            System.out.println("Nowa robotnica urodzona");
+
+            if (szanse.nextDouble()<0.30)
+            {
+                mrowisko.dodajMrowke(new Zolnierz(15));
+                zmniejszEnergie(20);
+                System.out.println("Krolowa zlozyla jajo. Jej aktualna energia to  " + getEnergia());
+                System.out.println("Z jaja wyklul sie zolnierz");
+            }
+
+            else
+            {
+                mrowisko.dodajMrowke(new Robotnica());
+                zmniejszEnergie(20);
+                System.out.println("Krolowa zlozyla jajo. Jej aktualna energia to  " + getEnergia());
+                System.out.println("Z jaja wyklula sie robotnica");
+            }
+
+
         }
 
         else
