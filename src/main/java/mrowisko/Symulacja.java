@@ -67,7 +67,7 @@ public class Symulacja
 
             if (!czyZyjeKrolowa)
             {
-                System.out.println("Krolowa nie zyje – koniec symulacji w kroku " + krok);
+                System.out.println("Smierc krolowej -  koniec symulacji w kroku " + krok);
                 break;
             }
 
@@ -79,7 +79,7 @@ public class Symulacja
 
             try
             {
-                Thread.sleep(100);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(10);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
             }
             catch (InterruptedException e)
             {

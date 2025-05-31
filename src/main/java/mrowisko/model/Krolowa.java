@@ -18,6 +18,16 @@ public class Krolowa extends Mrowka
         zmniejszEnergie(15);
 
         int kosztZlozeniaJaja=100; //Tu mozemy edytowac ile za złożenie jaja
+        int kiedyLeczyc = 50;
+        int kosztLeczenia=25;
+        int zyskEnergi=50;
+
+        if (getEnergia() < kiedyLeczyc)
+        {
+            mrowisko.setZasoby(mrowisko.getZasoby() - kosztLeczenia);
+            zmniejszEnergie(-zyskEnergi);
+            System.out.println("Krolowa wykorzystala zasoby i uleczyla sie o " + zyskEnergi + " energii, aktualna ilosc energii to " + getEnergia() );
+        }
 
         if (mrowisko.getZasoby() >= kosztZlozeniaJaja) //pozniej trzeba dodac "szanse" (mysle ze 30%?) aby z tych mrowek urodził sie zolnierz
         {
