@@ -61,7 +61,7 @@ public class Symulacja
 
             try
             {
-                Thread.sleep(100);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(4000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
             }
             catch (InterruptedException e)
             {

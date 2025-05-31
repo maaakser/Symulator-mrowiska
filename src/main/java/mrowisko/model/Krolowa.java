@@ -13,7 +13,6 @@ public class Krolowa extends Mrowka
         if (!isCzyZyje()) return;
         zwiekszWiek();
         zmniejszEnergie(15);
-        System.out.println("Krolowa #" + getId() + " zlozyla jajo. Energia: " + getEnergia());
 
         int kosztZlozeniaJaja=100; //Tu mozemy edytowac ile za złożenie jaja
 
@@ -21,7 +20,8 @@ public class Krolowa extends Mrowka
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
             mrowisko.dodajMrowke(new Robotnica());
-            System.out.println("Nowa robotnica urodzona. Zuzyto "+kosztZlozeniaJaja+" zasobow. Pozostalo: "+mrowisko.getZasoby());
+            System.out.println("Krolowa #" + getId() + " zlozyla jajo. Jej energia to  " + getEnergia()+ " Do zlozenia jaj zuzyto "+kosztZlozeniaJaja+" zasobow mrowiska. Pozostalo: "+mrowisko.getZasoby());
+            System.out.println("Nowa robotnica urodzona");
         }
 
         else
