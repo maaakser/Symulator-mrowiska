@@ -20,7 +20,8 @@ public class Krolowa extends Mrowka
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
             mrowisko.dodajMrowke(new Robotnica());
-            System.out.println("Krolowa #" + getId() + " zlozyla jajo. Jej energia to  " + getEnergia()+ " Do zlozenia jaj zuzyto "+kosztZlozeniaJaja+" zasobow mrowiska. Pozostalo: "+mrowisko.getZasoby());
+            zmniejszEnergie(20);
+            System.out.println("Krolowa #" + getId() + " zlozyla jajo. Jej aktualna energia to  " + getEnergia()+ " Do zlozenia jaj zuzyto "+kosztZlozeniaJaja+" zasobow mrowiska. Pozostalo: "+mrowisko.getZasoby());
             System.out.println("Nowa robotnica urodzona");
         }
 
