@@ -10,11 +10,14 @@ public class Jedzenie
         this.zasoby = zasobyStart;
     }
 
-    public int zbierz()
+    public int zbierz(int maks)
     {
-        int pobrane = zasoby;
-        zasoby = 0;
-        return pobrane;
+        int iloscZebrana = Math.min(zasoby, maks);// maks ilosc dla 1 mróweczki
+        zasoby -=iloscZebrana;
+        return iloscZebrana;
+    }
+    public void dodaj(int ile) {
+        this.zasoby += ile; // dodanie jedzenia poza mrowiskiem do zasobów
     }
 
     public int getZasoby()
@@ -22,4 +25,3 @@ public class Jedzenie
         return zasoby;
     }
 }
-//Narazie niestety robotnica nie zbiera jedzenia ani nie dodaje

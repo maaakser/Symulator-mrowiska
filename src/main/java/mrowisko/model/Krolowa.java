@@ -22,7 +22,7 @@ public class Krolowa extends Mrowka
         int kosztLeczenia=25;
         int zyskEnergi=50;
 
-        if (getEnergia() < kiedyLeczyc)
+        if (getEnergia() < kiedyLeczyc && mrowisko.getZasoby()>=kosztLeczenia)// żeby nie było ujmenych zasobów
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztLeczenia);
             zmniejszEnergie(-zyskEnergi);
@@ -33,7 +33,7 @@ public class Krolowa extends Mrowka
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
 
-            if (szanse.nextDouble()<0.30)
+            if (szanse.nextDouble()<0.35)
             {
                 mrowisko.dodajMrowke(new Zolnierz(15));
                 zmniejszEnergie(20);
@@ -44,7 +44,7 @@ public class Krolowa extends Mrowka
             else
             {
                 mrowisko.dodajMrowke(new Robotnica());
-                zmniejszEnergie(20);
+                zmniejszEnergie(10);
                 System.out.println("Krolowa zlozyla jajo. Jej aktualna energia to  " + getEnergia());
                 System.out.println("Z jaja wyklula sie robotnica");
             }

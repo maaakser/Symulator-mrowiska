@@ -20,7 +20,14 @@ public class Robotnica extends Mrowka
 
         zwiekszWiek();
         zmniejszEnergie(5);
-        System.out.println("Robotnica #" + getId() + " ruch wykonany. Energia: " + getEnergia());
+
+        Jedzenie j =mrowisko.getJedzenie();
+        int zebrane = j.zbierz(15); // maksymalna ilosc jedzenia dla 1 robotnicy
+        mrowisko.setZasoby(mrowisko.getZasoby() + zebrane );
+        if (zebrane>0)
+            System.out.println("Robotnica #" + getId() + " zebrala " + zebrane + " jednostek jedzenia.");
+        else
+            System.out.println("Robotnica #" + getId() + " nie znalazla jedzenia.");
     }
 
 

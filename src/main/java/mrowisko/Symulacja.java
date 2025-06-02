@@ -3,6 +3,9 @@ package mrowisko;
 import mrowisko.model.*; //poprawa importow zeby wszystkie na raz brał
 import java.util.Scanner; // żeby wpisywac do konsoli poczatkowe wartosci
 import java.util.Random; //sila zagorozenia
+import java.io.FileWriter;
+import java.io.IOException; //do zapisu txt
+import java.io.PrintWriter;
 
 
 public class Symulacja
@@ -18,7 +21,7 @@ public class Symulacja
         this.czasTrwania = czasTrwania;
         this.czyZagrozenia = czyZagrozenia;
         this.mrowisko = new Mrowisko(zasobyStart);
-        // dodajemy mrówki początkowe, moze potem zrobimy żeby to w konsoli fajnie działało
+        // dodajemy mrówki początkowe
         mrowisko.dodajMrowke(new Krolowa());
         mrowisko.dodajMrowke(new Robotnica());
         mrowisko.dodajMrowke(new Robotnica());
@@ -51,7 +54,7 @@ public class Symulacja
 
             if (mrowisko.getMrowki().isEmpty())
             {
-                System.out.println("Wszystkie mrowki umarly - symulacja zakonczona w kroku " + krok); //Dodanie zakonczenia symulacji po smieric wszystkich mrówek
+                System.out.println("Wszystkie mrowki umarly - symulacja zakonczona w kroku " + krok); //zakonczenia symulacji po smieric wszystkich mrówek
                 break;
             }
 
@@ -79,7 +82,7 @@ public class Symulacja
 
             try
             {
-                Thread.sleep(10);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(1000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
             }
             catch (InterruptedException e)
             {
@@ -90,7 +93,7 @@ public class Symulacja
         zakonczSymulacje();
     }
 
-    //Tu podsumowanie całej symulacji, dodamy pózniej żeby też ilosc złożonych jaj była i żeby do excela szło
+    //Tu podsumowanie całej symulacji i zapis do txt
     public void zakonczSymulacje()
     {
         System.out.println();
@@ -98,9 +101,23 @@ public class Symulacja
         System.out.println("Symulacja zakonczona.");
         System.out.println("Koncowe zasoby: " + mrowisko.getZasoby());
         System.out.println("Koncowa liczba mrowek: " + mrowisko.getMrowki().size());
+
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter("podsumowanie.txt"))) { // zapis do Txt
+            writer.println("=== PODSUMOWANIE SYMULACJI ===");
+            writer.println("Czas trwania symulacji: " + czasTrwania);
+            writer.println("Zagrozenia: " + (czyZagrozenia ? "tak" : "nie"));
+            writer.println("Koncowa liczba mrowek: " + mrowisko.getMrowki().size());
+            writer.println("Koncowe zasoby w mrowisku: " + mrowisko.getZasoby());
+            writer.println("Zasoby pozostale na zewnatrz (niezebrane): " + mrowisko.getJedzenie().getZasoby());
+            // Możesz dodać więcej jeśli śledzisz np. ilość jaj od królowej
+            writer.println("Symulacja zakonczona.");
+        } catch (IOException e) {
+            System.out.println("Błąd podczas zapisu podsumowania do pliku: " + e.getMessage());
+        }
     }
 
-    //Tu musimy znalesc "złoty" środek żeby to wszystko fajnie grało, znaczy żeby te mrówki miały zrównoważone siły z zagrozeniem ale i tak narazie zolnierz nie moze bic zagrozenia :((
+    //Tu musimy znalesc "złoty" środek żeby to wszystko fajnie grało, znaczy żeby te mrówki miały zrównoważone siły z zagrozeniem
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);

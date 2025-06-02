@@ -1,6 +1,7 @@
 package mrowisko.model;
 
 import java.util.List;
+import java.util.Random;
 
 public class Zagrozenie
 {
@@ -44,7 +45,7 @@ public class Zagrozenie
 
         if (!lista.isEmpty())
         {
-            Mrowka removed = lista.remove(0);
+            Mrowka removed = lista.remove(new Random().nextInt(1)+ lista.size()-1);
             System.out.println("Brak zolnierzy. Usunieto mrowke #" + removed.getId()); //jak nie ma zolnierza to "zabijamy" mrówke, bo jest słabsza więc od razu umiera
         }
     }

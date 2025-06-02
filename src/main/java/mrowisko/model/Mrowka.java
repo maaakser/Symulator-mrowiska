@@ -53,11 +53,6 @@ public abstract class Mrowka
         }
     }
 
-    public int getWiek()
-    {
-        return wiek;
-    }
-
     public void zwiekszWiek()
     {
         this.wiek++;
