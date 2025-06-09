@@ -17,18 +17,25 @@ public class Mrowisko
         this.poleJedzenia= new Jedzenie(0);
     }
 
+
+    /*
+    co cykl pojawia się losowa ilosc zasobów w obrebie mrowiska,
+    kopiujemy liste aby Java wywalała błędu,
+    odnosimy się do mrowiska aby krolowa mogla "edytowac" mrowisko
+    usuwamy mrówke jeżeli jej hp spadło ponizej 0
+     */
     public void zarzadzaj()
     {
-        poleJedzenia.dodaj(new Random().nextInt(100) + 5 );  // co cykl pojawia się iles tam zasobów w obrebie mrowiska
+        poleJedzenia.dodaj(new Random().nextInt(100) + 5 );  //
 
-        List<Mrowka> snapshot = new ArrayList<>(mrowki);   //kopię listy bo inaczej wywalalo błąd
+        List<Mrowka> snapshot = new ArrayList<>(mrowki);
         for (Mrowka m : snapshot)
         {
-            m.ruch(this); //referencja do mrowiska aby krolowa mogla "edytowac" mrowisko
+            m.ruch(this);
 
             if (!m.isCzyZyje())
             {
-                mrowki.remove(m);  // jeśli któraś mrówka padła, usuwamy
+                mrowki.remove(m);
                 System.out.println("Mrowka #" + m.getId() + " umarla.");
             }
         }
@@ -67,8 +74,4 @@ public class Mrowisko
         this.zasoby = zasoby;
     }
 
-    public void setMrowki(List<Mrowka> mrowki)
-    {
-        this.mrowki = mrowki;
-    }
 }

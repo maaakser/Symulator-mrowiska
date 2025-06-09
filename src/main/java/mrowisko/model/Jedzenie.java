@@ -12,12 +12,17 @@ public class Jedzenie
 
     public int zbierz(int maks)
     {
-        int iloscZebrana = Math.min(zasoby, maks);// maks ilosc dla 1 mróweczki
+        int iloscZebrana = Math.min(zasoby, maks);// Maksymalna ilość jedzenia która może nieść mrówka
         zasoby -=iloscZebrana;
         return iloscZebrana;
     }
+
+    /*
+    dodanie jedzenia poza mrowiskiem do zasobów
+     */
+
     public void dodaj(int ile) {
-        this.zasoby += ile; // dodanie jedzenia poza mrowiskiem do zasobów
+        this.zasoby += ile;
     }
 
     public int getZasoby()

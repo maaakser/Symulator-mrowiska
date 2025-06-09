@@ -1,10 +1,15 @@
 package mrowisko;
 
-import mrowisko.model.*; //poprawa importow zeby wszystkie na raz brał
-import java.util.Scanner; // żeby wpisywac do konsoli poczatkowe wartosci
-import java.util.Random; //sila zagorozenia
+/*
+Importy potrzbne do zapisu do pliku TXT
+Losowych sił zagrozenia
+Do wpisywania początkowych parametrów
+ */
+import mrowisko.model.*;
+import java.util.Scanner;
+import java.util.Random;
 import java.io.FileWriter;
-import java.io.IOException; //do zapisu txt
+import java.io.IOException;
 import java.io.PrintWriter;
 
 
@@ -21,7 +26,10 @@ public class Symulacja
         this.czasTrwania = czasTrwania;
         this.czyZagrozenia = czyZagrozenia;
         this.mrowisko = new Mrowisko(zasobyStart);
-        // dodajemy mrówki początkowe
+
+        /*
+        Dodanie początkowych mrówek
+         */
         mrowisko.dodajMrowke(new Krolowa());
         mrowisko.dodajMrowke(new Robotnica());
         mrowisko.dodajMrowke(new Robotnica());
@@ -34,6 +42,9 @@ public class Symulacja
     {
         System.out.printf("Start symulacji: czas= " + czasTrwania + ", zasoby= " + mrowisko.getZasoby() + ", zagrozenia= " + czyZagrozenia);
 
+    /*
+    Każdy krok symulacji
+    */
         for (int krok = 1; krok <= czasTrwania; krok++)
         {
             System.out.println();
@@ -42,7 +53,7 @@ public class Symulacja
 
             if (czyZagrozenia && random.nextBoolean())
             {
-                Zagrozenie z = new Zagrozenie(".....", 10 + random.nextInt(10)); //tu mozna zmienic "sile" zagrozenia
+                Zagrozenie z = new Zagrozenie("Pajak", 10 + random.nextInt(10)); //Losowa siła dla zagrozenia
                 z.atakuj(mrowisko);
             }
             else
@@ -76,13 +87,13 @@ public class Symulacja
 
 
 
-            //takie podsumowanie
+            //Podsumowanie
             System.out.println("Liczba mrowek: " + mrowisko.getMrowki().size());
             System.out.println("Zasoby: " + mrowisko.getZasoby());
 
             try
             {
-                Thread.sleep(1000);  // mała pauza by faktycznie działało jako symulacja a nie wypluwało od razu wszystko
+                Thread.sleep(1000);  // Pauza aby można było przeczytać
             }
             catch (InterruptedException e)
             {
@@ -93,7 +104,7 @@ public class Symulacja
         zakonczSymulacje();
     }
 
-    //Tu podsumowanie całej symulacji i zapis do txt
+    //Podsumowanie całej symulacji i zapis do txt
     public void zakonczSymulacje()
     {
         System.out.println();
@@ -110,14 +121,12 @@ public class Symulacja
             writer.println("Koncowa liczba mrowek: " + mrowisko.getMrowki().size());
             writer.println("Koncowe zasoby w mrowisku: " + mrowisko.getZasoby());
             writer.println("Zasoby pozostale na zewnatrz (niezebrane): " + mrowisko.getJedzenie().getZasoby());
-            // Możesz dodać więcej jeśli śledzisz np. ilość jaj od królowej
             writer.println("Symulacja zakonczona.");
         } catch (IOException e) {
             System.out.println("Błąd podczas zapisu podsumowania do pliku: " + e.getMessage());
         }
     }
 
-    //Tu musimy znalesc "złoty" środek żeby to wszystko fajnie grało, znaczy żeby te mrówki miały zrównoważone siły z zagrozeniem
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);

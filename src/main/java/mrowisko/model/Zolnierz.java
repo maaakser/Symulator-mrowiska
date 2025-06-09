@@ -7,7 +7,7 @@ public class Zolnierz extends Mrowka
 
     public Zolnierz(int sila)
     {
-        super(120);
+        super(120); //energia startowa
         this.sila = sila;
     }
 
@@ -16,7 +16,7 @@ public class Zolnierz extends Mrowka
     {
         if (!isCzyZyje()) return;
 
-        zwiekszWiek();
+
         zmniejszEnergie(8);
         System.out.println("zolnierz #" + getId() + " patroluje. Energia: " + getEnergia() + " Jego aktualna sila to: "+ sila);
     }

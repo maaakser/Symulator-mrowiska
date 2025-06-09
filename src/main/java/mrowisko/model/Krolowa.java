@@ -8,28 +8,38 @@ public class Krolowa extends Mrowka
 
     public Krolowa()
     {
-        super(200);  // energia startowa, tu trzeba dodac że złożenia jaja = mniejsza energia. Może nowa klasa "jaja"?
+        super(200);  // energia startowa
     }
 
     public void ruch(Mrowisko mrowisko)//referencja do mrowiska, żeby krolowa mogła edytowac/zarzadac mrowiskiem
     {
         if (!isCzyZyje()) return;
-        zwiekszWiek();
         zmniejszEnergie(15);
 
-        int kosztZlozeniaJaja=100; //Tu mozemy edytowac ile za złożenie jaja
+
+        /*
+        Koszty życia Królowej
+         */
+        int kosztZlozeniaJaja=100;
         int kiedyLeczyc = 50;
         int kosztLeczenia=25;
         int zyskEnergi=50;
 
-        if (getEnergia() < kiedyLeczyc && mrowisko.getZasoby()>=kosztLeczenia)// żeby nie było ujmenych zasobów
+        /*
+        Leczenie królowej
+         */
+        if (getEnergia() < kiedyLeczyc && mrowisko.getZasoby()>=kosztLeczenia)
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztLeczenia);
             zmniejszEnergie(-zyskEnergi);
             System.out.println("Krolowa wykorzystala zasoby i uleczyla sie o " + zyskEnergi + " energii, aktualna ilosc energii to " + getEnergia() );
         }
 
-        if (mrowisko.getZasoby() >= kosztZlozeniaJaja) //pozniej trzeba dodac "szanse" (mysle ze 30%?) aby z tych mrowek urodził sie zolnierz
+
+        /*
+        35% szans na urodzenie zolnierza a reszta na urodzenie robotnicy
+         */
+        if (mrowisko.getZasoby() >= kosztZlozeniaJaja)
         {
             mrowisko.setZasoby(mrowisko.getZasoby() - kosztZlozeniaJaja);
 

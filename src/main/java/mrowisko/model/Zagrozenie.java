@@ -3,8 +3,7 @@ package mrowisko.model;
 import java.util.List;
 import java.util.Random;
 
-public class Zagrozenie
-{
+public class Zagrozenie {
     private String typ;
     private int sila;
 
@@ -50,24 +49,4 @@ public class Zagrozenie
         }
     }
 
-
-    public String getTyp()
-    {
-        return typ;
-    }
-
-    public void setTyp(String typ)
-    {
-        this.typ = typ;
-    }
-
-    public int getSila()
-    {
-        return sila;
-    }
-
-    public void setSila(int sila)
-    {
-        this.sila = sila;
-    }
 }

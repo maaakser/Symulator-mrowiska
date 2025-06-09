@@ -6,7 +6,7 @@ public class Robotnica extends Mrowka
 
     public Robotnica()
     {
-        super(100);  // przykładowa, narazie wpływa tylko na to ile "przeżyje", jedzenie nie dodaje nic
+        super(100);  //energia startowa robotnicy
     }
 
 
@@ -18,11 +18,14 @@ public class Robotnica extends Mrowka
             return;
         }
 
-        zwiekszWiek();
         zmniejszEnergie(5);
 
+        /*
+        Zbieranie jedzenia do mrowiska,
+        ustawiamy maksymalna ilosc jedzenia która moze zostac zebrana przez jedna mrówke
+         */
         Jedzenie j =mrowisko.getJedzenie();
-        int zebrane = j.zbierz(15); // maksymalna ilosc jedzenia dla 1 robotnicy
+        int zebrane = j.zbierz(15);
         mrowisko.setZasoby(mrowisko.getZasoby() + zebrane );
         if (zebrane>0)
             System.out.println("Robotnica #" + getId() + " zebrala " + zebrane + " jednostek jedzenia.");

@@ -1,21 +1,18 @@
 package mrowisko.model;
 
 
-public abstract class Mrowka
-{
+public abstract class Mrowka {
     private final int id;
     private boolean czyZyje;
     private int energia;
-    private int wiek;
+
 
     private static int counter = 0;
 
 
-    public Mrowka(int energiaStart)
-    {
+    public Mrowka(int energiaStart) {
         this.id = ++counter;
         this.energia = energiaStart;
-        this.wiek = 0;
         this.czyZyje = true;
     }
 
@@ -23,38 +20,28 @@ public abstract class Mrowka
     public abstract void ruch(Mrowisko mrowisko); //zmiana polimorfizmu aby krolowa mogla "edytowac" mrowisko i jego zasoby
 
 
-    public void smierc()
-    {
+    public void smierc() {
         this.czyZyje = false;
     }
 
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public boolean isCzyZyje()
-    {
+    public boolean isCzyZyje() {
         return czyZyje;
     }
 
-    public int getEnergia()
-    {
+    public int getEnergia() {
         return energia;
     }
 
-    public void zmniejszEnergie(int ilosc)
-    {
+    public void zmniejszEnergie(int ilosc) {
         this.energia -= ilosc;
-        if (this.energia <= 0)
-        {
+        if (this.energia <= 0) {
             smierc();
         }
     }
-
-    public void zwiekszWiek()
-    {
-        this.wiek++;
-    }
 }
+
